@@ -1,0 +1,1 @@
+const os=require('os');const original=os.userInfo;os.userInfo=(...args)=>{try{return original(...args)}catch{return {username:'Codex',homedir:process.cwd(),shell:null,uid:-1,gid:-1}}};require('./node_modules/drizzle-kit/bin.cjs');
