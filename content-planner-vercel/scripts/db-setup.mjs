@@ -1,0 +1,2 @@
+import fs from 'node:fs';import {neon} from '@neondatabase/serverless';
+const connection=process.env.DATABASE_URL||process.env.STORAGE_URL||process.env.POSTGRES_URL;if(!connection)throw Error('Set DATABASE_URL before running db:setup.');const sql=neon(connection);const statements=fs.readFileSync(new URL('../schema.sql',import.meta.url),'utf8').split(';').map(s=>s.trim()).filter(Boolean);await sql.transaction(statements.map(s=>sql.query(s,[])));console.log('Planner tables are ready.');
